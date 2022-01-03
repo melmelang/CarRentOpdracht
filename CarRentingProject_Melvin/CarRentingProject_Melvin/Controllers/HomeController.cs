@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CarRentingProject_Melvin.Data;
 using CarRentingProject_Melvin.Models;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using CarRentingProject_Melvin.Data;
 
 namespace CarRentingProject_Melvin.Controllers
 {

@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using CarRentingProject_Melvin.Areas.Identity.Data;
+﻿using CarRentingProject_Melvin.Areas.Identity.Data;
 using CarRentingProject_Melvin.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace CarRentingProject_Melvin.Data
 {
