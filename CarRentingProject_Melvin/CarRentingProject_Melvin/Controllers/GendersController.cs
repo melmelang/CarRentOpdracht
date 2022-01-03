@@ -7,17 +7,16 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CarRentingProject_Melvin.Data;
-using Studentenbeheer.Models;
+using CarRentingProject_Melvin.Models;
 
 namespace CarRentingProject_Melvin.Controllers
 {
-    public class GendersController : Controller
+    public class GendersController : AppController
     {
-        private readonly DBContext _context;
 
-        public GendersController(DBContext context)
+        public GendersController(DBContext context, IHttpContextAccessor httpContextAccessor,
+                                    ILogger<AppController> logger) : base(context, httpContextAccessor, logger)
         {
-            _context = context;
         }
 
         // GET: Genders

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Studentenbeheer.Models
+namespace CarRentingProject_Melvin.Models
 {
     public class Gender
     {

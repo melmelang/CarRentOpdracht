@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CarRentingProject_Melvin.Models
 {
@@ -16,7 +17,6 @@ namespace CarRentingProject_Melvin.Models
         public DateTime ProductionDate { get; set; }
         [Required]
         public long Mileage { get; set; }
-        [Required]
         public int RenterId { get; set; }
         public Renter? Renter { get; set; }
     }

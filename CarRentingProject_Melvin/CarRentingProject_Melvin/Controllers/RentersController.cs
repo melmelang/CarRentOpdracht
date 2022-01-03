@@ -11,13 +11,12 @@ using CarRentingProject_Melvin.Models;
 
 namespace CarRentingProject_Melvin.Controllers
 {
-    public class RentersController : Controller
+    public class RentersController : AppController
     {
-        private readonly DBContext _context;
 
-        public RentersController(DBContext context)
+        public RentersController(DBContext context, IHttpContextAccessor httpContextAccessor,
+                                    ILogger<AppController> logger) : base(context, httpContextAccessor, logger)
         {
-            _context = context;
         }
 
         // GET: Renters

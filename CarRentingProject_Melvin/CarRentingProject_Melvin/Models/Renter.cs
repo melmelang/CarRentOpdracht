@@ -1,5 +1,4 @@
-﻿using Studentenbeheer.Models;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace CarRentingProject_Melvin.Models
 {
@@ -15,7 +14,6 @@ namespace CarRentingProject_Melvin.Models
         [Required]
         [DataType(DataType.Date)]
         public DateTime Birthday { get; set; }
-        [Required]
         public char GenderId { get; set; }
         public Gender? Gender { get; set; }
     }
