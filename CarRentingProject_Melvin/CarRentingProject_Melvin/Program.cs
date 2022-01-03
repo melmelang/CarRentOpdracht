@@ -1,5 +1,12 @@
-var builder = WebApplication.CreateBuilder(args);
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using CarRentingProject_Melvin.Data;
+using CarRentingProject_Melvin.Areas.Identity.Data;
 
+var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("DBContextConnection");builder.Services.AddDbContext<DBContext>(options =>
+    options.UseSqlServer(connectionString));builder.Services.AddDefaultIdentity<CarRentingProject_AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<DBContext>();
 // Add services to the container.
 builder.Services.AddRazorPages();
 
@@ -17,7 +24,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();

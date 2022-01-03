@@ -14,7 +14,7 @@ namespace CarRentingProject_Melvin.Models
         public string UserName { get; set; }
         [Required]
         [DataType(DataType.Date)]
-        public DateOnly Birthday { get; set; }
+        public DateTime Birthday { get; set; }
         [Required]
         public char GenderId { get; set; }
         public Gender? Gender { get; set; }
