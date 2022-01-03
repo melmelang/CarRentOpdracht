@@ -4,7 +4,7 @@ namespace CarRentingProject_Melvin.Models
 {
     public class RentedCars
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         [Required]
         public int CarsId { get; set; }
         public Cars? Cars { get; set; }
