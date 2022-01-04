@@ -1,6 +1,8 @@
 ﻿#nullable disable
+using CarRentingProject_Melvin.Areas.Identity.Data;
 using CarRentingProject_Melvin.Data;
 using CarRentingProject_Melvin.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -9,10 +11,13 @@ namespace CarRentingProject_Melvin.Controllers
 {
     public class RentersController : AppController
     {
+        private readonly UserManager<CarRentingProject_AppUser> _userManager;
 
-        public RentersController(DBContext context, IHttpContextAccessor httpContextAccessor,
+        public RentersController(UserManager<CarRentingProject_AppUser> userManager,
+                                    DBContext context, IHttpContextAccessor httpContextAccessor,
                                     ILogger<AppController> logger) : base(context, httpContextAccessor, logger)
         {
+            _userManager = userManager;
         }
 
         // GET: Renters
@@ -53,12 +58,24 @@ namespace CarRentingProject_Melvin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,UserName,Birthday,GenderId")] Renter renter)
+        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,UserName,Birthday,GenderId,UserId")] Renter renter)
         {
             if (ModelState.IsValid)
             {
+                var user = Activator.CreateInstance<CarRentingProject_AppUser>();
+                user.FirstName = renter.FirstName;
+                user.LastName = renter.LastName;
+                user.UserName = renter.UserName;
+                user.GenderId = renter.GenderId;
+                user.Birthday = renter.Birthday;
+                user.Email = renter.UserName + "@renter.be";
+                user.EmailConfirmed = true;
+                await _userManager.CreateAsync(user, renter.FirstName + "." + renter.LastName + "REN1");
+
+                renter.UserId = user.Id;
                 _context.Add(renter);
                 await _context.SaveChangesAsync();
+                await _userManager.AddToRoleAsync(user, "Renter");
                 return RedirectToAction(nameof(Index));
             }
             ViewData["GenderId"] = new SelectList(_context.Gender, "Id", "Name", renter.GenderId);

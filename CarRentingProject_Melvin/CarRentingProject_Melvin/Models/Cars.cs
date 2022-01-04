@@ -10,7 +10,7 @@ namespace CarRentingProject_Melvin.Models
         [Required]
         public string Model { get; set; }
         [Required]
-        public int price { get; set; }
+        public int Price { get; set; }
         [Required]
         [DataType(DataType.Date)]
         public DateTime ProductionDate { get; set; }

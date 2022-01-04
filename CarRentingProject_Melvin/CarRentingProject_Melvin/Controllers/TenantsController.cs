@@ -1,6 +1,8 @@
 ﻿#nullable disable
+using CarRentingProject_Melvin.Areas.Identity.Data;
 using CarRentingProject_Melvin.Data;
 using CarRentingProject_Melvin.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -9,10 +11,13 @@ namespace CarRentingProject_Melvin.Controllers
 {
     public class TenantsController : AppController
     {
+        private readonly UserManager<CarRentingProject_AppUser> _userManager;
 
-        public TenantsController(DBContext context, IHttpContextAccessor httpContextAccessor,
+        public TenantsController(UserManager<CarRentingProject_AppUser> userManager,
+                                    DBContext context, IHttpContextAccessor httpContextAccessor,
                                     ILogger<AppController> logger) : base(context, httpContextAccessor, logger)
         {
+            _userManager = userManager;
         }
 
         // GET: Tenants
@@ -41,29 +46,29 @@ namespace CarRentingProject_Melvin.Controllers
             return View(tenant);
         }
 
-        // GET: Tenants/Create
-        public IActionResult Create()
-        {
-            ViewData["GenderId"] = new SelectList(_context.Gender, "Id", "Name");
-            return View();
-        }
+        //// GET: Tenants/Create
+        //public IActionResult Create()
+        //{
+        //    ViewData["GenderId"] = new SelectList(_context.Gender, "Id", "Name");
+        //    return View();
+        //}
 
-        // POST: Tenants/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,UserName,Birthday,GenderId")] Tenant tenant)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(tenant);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["GenderId"] = new SelectList(_context.Gender, "Id", "Name", tenant.GenderId);
-            return View(tenant);
-        }
+        //// POST: Tenants/Create
+        //// To protect from overposting attacks, enable the specific properties you want to bind to.
+        //// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,UserName,Birthday,GenderId")] Tenant tenant)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _context.Add(tenant);
+        //        await _context.SaveChangesAsync();
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    ViewData["GenderId"] = new SelectList(_context.Gender, "Id", "Name", tenant.GenderId);
+        //    return View(tenant);
+        //}
 
         // GET: Tenants/Edit/5
         public async Task<IActionResult> Edit(int? id)

@@ -53,10 +53,15 @@ namespace CarRentingProject_Melvin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Brand,Model,price,ProductionDate,Mileage,RenterId")] Cars cars)
+        public async Task<IActionResult> Create([Bind("Id,Brand,Model,Price,ProductionDate,Mileage,RenterId")] Cars cars)
         {
+            var renterId = _context.Renter.Where(r => r.UserId == _user.Id).Select(r => r.Id);
             if (ModelState.IsValid)
             {
+                foreach (var ren in renterId)
+                {
+                    cars.RenterId = ren;
+                }
                 _context.Add(cars);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -87,7 +92,7 @@ namespace CarRentingProject_Melvin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Brand,Model,price,ProductionDate,Mileage,RenterId")] Cars cars)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Brand,Model,Price,ProductionDate,Mileage,RenterId")] Cars cars)
         {
             if (id != cars.Id)
             {

@@ -1,6 +1,5 @@
 ﻿using CarRentingProject_Melvin.Models;
 using Microsoft.AspNetCore.Identity;
-using System.ComponentModel.DataAnnotations;
 
 namespace CarRentingProject_Melvin.Areas.Identity.Data;
 

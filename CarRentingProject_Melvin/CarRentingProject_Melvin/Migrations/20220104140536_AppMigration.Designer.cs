@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarRentingProject_Melvin.Migrations
 {
     [DbContext(typeof(DBContext))]
-    [Migration("20220104101120_AppMigration")]
+    [Migration("20220104140536_AppMigration")]
     partial class AppMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -125,13 +125,13 @@ namespace CarRentingProject_Melvin.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("ProductionDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("RenterId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("price")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -205,6 +205,9 @@ namespace CarRentingProject_Melvin.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -212,6 +215,8 @@ namespace CarRentingProject_Melvin.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("GenderId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Renter");
                 });
@@ -239,6 +244,9 @@ namespace CarRentingProject_Melvin.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -246,6 +254,8 @@ namespace CarRentingProject_Melvin.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("GenderId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Tenant");
                 });
@@ -434,7 +444,13 @@ namespace CarRentingProject_Melvin.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("CarRentingProject_Melvin.Areas.Identity.Data.CarRentingProject_AppUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
                     b.Navigation("Gender");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("CarRentingProject_Melvin.Models.Tenant", b =>
@@ -445,7 +461,13 @@ namespace CarRentingProject_Melvin.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("CarRentingProject_Melvin.Areas.Identity.Data.CarRentingProject_AppUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
                     b.Navigation("Gender");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

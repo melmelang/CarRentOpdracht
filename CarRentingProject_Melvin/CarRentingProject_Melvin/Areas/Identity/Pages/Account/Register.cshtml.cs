@@ -140,20 +140,12 @@ namespace CarRentingProject_Melvin.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
-                    _context.Add(
-                        new Tenant
-                        {
-                            UserName = Input.UserName,
-                            FirstName = Input.FirstName,
-                            LastName = Input.LastName,
-                            Birthday = Input.Birthday,
-                            GenderId = Input.GenderId
-                        }
-                        );
-                    await _context.SaveChangesAsync();
+
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);
+
+                    await _userManager.AddToRoleAsync(user, "Tenant");
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Page(
@@ -167,6 +159,18 @@ namespace CarRentingProject_Melvin.Areas.Identity.Pages.Account
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
+                        _context.Add(
+                        new Tenant
+                        {
+                            UserName = Input.UserName,
+                            FirstName = Input.FirstName,
+                            LastName = Input.LastName,
+                            Birthday = Input.Birthday,
+                            GenderId = Input.GenderId,
+                            UserId = userId,
+                        }
+                        );
+                        await _context.SaveChangesAsync();
                         return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
                     }
                     else

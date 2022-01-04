@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using CarRentingProject_Melvin.Areas.Identity.Data;
+using System.ComponentModel.DataAnnotations;
 
 namespace CarRentingProject_Melvin.Models
 {
@@ -16,5 +17,7 @@ namespace CarRentingProject_Melvin.Models
         public DateTime Birthday { get; set; }
         public char GenderId { get; set; }
         public Gender? Gender { get; set; }
+        public string? UserId { get; set; }
+        public CarRentingProject_AppUser? User { get; set; }
     }
 }
