@@ -3,11 +3,14 @@
 #nullable disable
 
 using CarRentingProject_Melvin.Areas.Identity.Data;
+using CarRentingProject_Melvin.Data;
+using CarRentingProject_Melvin.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.WebUtilities;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -23,13 +26,15 @@ namespace CarRentingProject_Melvin.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<CarRentingProject_AppUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly DBContext _context;
 
         public RegisterModel(
             UserManager<CarRentingProject_AppUser> userManager,
             IUserStore<CarRentingProject_AppUser> userStore,
             SignInManager<CarRentingProject_AppUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            DBContext context)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -37,6 +42,7 @@ namespace CarRentingProject_Melvin.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _context = context;
         }
 
         /// <summary>
@@ -64,6 +70,21 @@ namespace CarRentingProject_Melvin.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
+            [Required]
+            [Display(Name = "FirstName")]
+            public string FirstName { get; set; }
+            [Required]
+            [Display(Name = "LastName")]
+            public string LastName { get; set; }
+            [Required]
+            [Display(Name = "UserName")]
+            public string UserName { get; set; }
+            [Required]
+            [DataType(DataType.Date)]
+            [Display(Name = "Birthday")]
+            public DateTime Birthday { get; set; }
+            public char GenderId { get; set; }
+            public Gender? Gender { get; set; }
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -96,6 +117,7 @@ namespace CarRentingProject_Melvin.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
+            ViewData["GenderId"] = new SelectList(_context.Gender, "Id", "Name");
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
@@ -107,13 +129,28 @@ namespace CarRentingProject_Melvin.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
+                user.FirstName = Input.FirstName;
+                user.LastName = Input.LastName;
+                user.Birthday = Input.Birthday;
+                user.GenderId = Input.GenderId;
 
-                await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
+                await _userStore.SetUserNameAsync(user, Input.UserName, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
                 {
+                    _context.Add(
+                        new Tenant
+                        {
+                            UserName = Input.UserName,
+                            FirstName = Input.FirstName,
+                            LastName = Input.LastName,
+                            Birthday = Input.Birthday,
+                            GenderId = Input.GenderId
+                        }
+                        );
+                    await _context.SaveChangesAsync();
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);
