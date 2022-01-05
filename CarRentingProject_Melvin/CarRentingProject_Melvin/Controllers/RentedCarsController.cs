@@ -43,10 +43,15 @@ namespace CarRentingProject_Melvin.Controllers
         }
 
         // GET: RentedCars/Create
-        public IActionResult Create()
+        public IActionResult Create(int? id, int? wich)
         {
             ViewData["CarsId"] = new SelectList(_context.Cars, "Id", "Brand");
-            ViewData["TenantId"] = new SelectList(_context.Tenant, "Id", "FirstName");
+            //ViewData["TenantId"] = new SelectList(_context.Tenant, "Id", "FirstName");
+            if (wich == 2)
+            {
+                var cars = _context.Cars.Where(c => c.Id == id);
+                ViewData["CarsId"] = new SelectList(cars, "Id", "Brand");
+            }
             return View();
         }
 
@@ -55,16 +60,21 @@ namespace CarRentingProject_Melvin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CarsId,TenantId,RideTime")] RentedCars rentedCars)
+        public async Task<IActionResult> Create(int? id, int? wich, [Bind("Id,CarsId,TenantId,RideTime")] RentedCars rentedCars)
         {
+            var tenant = _context.Tenant.Where(t => t.UserId == _user.Id).Select(t => t.Id);
             if (ModelState.IsValid)
             {
+                foreach (var item in tenant)
+                {
+                    rentedCars.TenantId = item;
+                }
                 _context.Add(rentedCars);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CarsId"] = new SelectList(_context.Cars, "Id", "Brand", rentedCars.CarsId);
-            ViewData["TenantId"] = new SelectList(_context.Tenant, "Id", "FirstName", rentedCars.TenantId);
+            //ViewData["TenantId"] = new SelectList(_context.Tenant, "Id", "FirstName", rentedCars.TenantId);
             return View(rentedCars);
         }
 

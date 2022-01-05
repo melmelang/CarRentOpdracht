@@ -18,8 +18,15 @@ namespace CarRentingProject_Melvin.Controllers
         // GET: Cars
         public async Task<IActionResult> Index()
         {
-            var dBContext = _context.Cars.Include(c => c.Renter);
-            return View(await dBContext.ToListAsync());
+            if (User.IsInRole("Renter"))
+            {
+                var dBContext = _context.Cars.Include(c => c.Renter).Where(c => c.Renter.UserId == _user.Id);
+                return View(await dBContext.ToListAsync());
+            } else
+            {
+                var dBContext = _context.Cars.Include(c => c.Renter);
+                return View(await dBContext.ToListAsync());
+            }
         }
 
         // GET: Cars/Details/5
