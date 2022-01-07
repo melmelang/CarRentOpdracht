@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarRentingProject_Melvin.Migrations
 {
     [DbContext(typeof(DBContext))]
-    [Migration("20220104140536_AppMigration")]
+    [Migration("20220107113354_AppMigration")]
     partial class AppMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -1,0 +1,67 @@
+﻿@model AppUserViewModel
+
+@using Microsoft.AspNetCore.Mvc.Localization
+@using CarRentingProject_Melvin.Areas.Identity.Data
+@inject IViewLocalizer Localizer;
+
+
+
+@{
+    ViewData["Title"] = Localizer["Change Roles"];
+}
+
+<h2>@Model.UserName: @Localizer["Change Roles"]</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Roles" >
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label class="control-label">@Localizer["UserName"]
+                <input class="filled-in" asp-for="UserName" class="form-control" asp-items="ViewBag.GroupId" disabled></input>
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">@Localizer["First Name"]</label>
+                <input class="filled-in" asp-for="FirstName" class="form-control" asp-items="ViewBag.UserId" disabled></input>
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">@Localizer["Last Name"]</label>
+                <input class="filled-in" asp-for="LastName" class="form-control" disabled/>
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">@Localizer["Tenant"]
+                <input class="filled-in" type="checkbox" asp-for="@Model.Tenant" />
+                <span asp-validation-for="Tenant" class="text-danger"></span>
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="control-label">@Localizer["Renter"]
+                <input class="filled-in" type="checkbox" asp-for="@Model.Renter" />
+                <span asp-validation-for="Renter" class="text-danger"></span>
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="control-label">@Localizer["Admin"]
+                <input class="filled-in" type="checkbox" asp-for="@Model.Admin" />
+                <span asp-validation-for="Admin" class="text-danger"></span>
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="@Localizer["Save"]" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">@Localizer["Back to List"]</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

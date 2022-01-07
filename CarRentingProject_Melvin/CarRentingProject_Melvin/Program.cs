@@ -91,6 +91,8 @@ var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture("nl
 //.AddSupportedCultures(Language.SupportedLanguages)
 //.AddSupportedUICultures(Language.SupportedLanguages);
 
+app.UseRequestLocalization(localizationOptions);
+
 app.MapRazorPages();
 app.UseMiddleware<SessionUser>();
 
