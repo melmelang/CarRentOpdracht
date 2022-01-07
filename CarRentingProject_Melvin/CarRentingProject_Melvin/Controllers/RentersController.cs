@@ -2,6 +2,7 @@
 using CarRentingProject_Melvin.Areas.Identity.Data;
 using CarRentingProject_Melvin.Data;
 using CarRentingProject_Melvin.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -9,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CarRentingProject_Melvin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class RentersController : AppController
     {
         private readonly UserManager<CarRentingProject_AppUser> _userManager;

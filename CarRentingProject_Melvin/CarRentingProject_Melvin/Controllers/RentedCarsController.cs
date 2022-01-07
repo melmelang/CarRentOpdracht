@@ -1,12 +1,14 @@
 ﻿#nullable disable
 using CarRentingProject_Melvin.Data;
 using CarRentingProject_Melvin.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarRentingProject_Melvin.Controllers
 {
+    [Authorize]
     public class RentedCarsController : AppController
     {
 
@@ -18,8 +20,27 @@ namespace CarRentingProject_Melvin.Controllers
         // GET: RentedCars
         public async Task<IActionResult> Index()
         {
-            var dBContext = _context.RentedCars.Include(r => r.Cars).Include(r => r.Tenant);
-            return View(await dBContext.ToListAsync());
+            var RentedCars = _context.RentedCars.Where(r => r.RideTime > DateTime.Now);
+            foreach (var rentedCars in RentedCars)
+            {
+                _context.RentedCars.Remove(rentedCars);
+            }
+            if (User.IsInRole("Renter"))
+            {
+                var RenterId = _context.Renter.Where(r => r.UserId == _user.Id).Select(r => r.Id);
+                var dBContext = _context.RentedCars.Include(r => r.Cars).Include(r => r.Tenant).Where(r => RenterId.Contains(r.Cars.RenterId));
+                return View(await dBContext.ToListAsync());
+            }
+            else if (User.IsInRole("Tenant"))
+            {
+                var dBContext = _context.RentedCars.Include(r => r.Cars).Include(r => r.Tenant).Where(r => r.Tenant.UserId == _user.Id);
+                return View(await dBContext.ToListAsync());
+            }
+            else
+            {
+                var dBContext = _context.RentedCars.Include(r => r.Cars).Include(r => r.Tenant);
+                return View(await dBContext.ToListAsync());
+            }
         }
 
         // GET: RentedCars/Details/5
@@ -42,6 +63,7 @@ namespace CarRentingProject_Melvin.Controllers
             return View(rentedCars);
         }
 
+        [Authorize(Roles = "Tendant")]
         // GET: RentedCars/Create
         public IActionResult Create(int? id, int? wich)
         {
@@ -58,6 +80,7 @@ namespace CarRentingProject_Melvin.Controllers
         // POST: RentedCars/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Tendant")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(int? id, int? wich, [Bind("Id,CarsId,TenantId,RideTime")] RentedCars rentedCars)
@@ -78,6 +101,7 @@ namespace CarRentingProject_Melvin.Controllers
             return View(rentedCars);
         }
 
+        [Authorize(Roles = "Tendant,Admin")]
         // GET: RentedCars/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -99,6 +123,7 @@ namespace CarRentingProject_Melvin.Controllers
         // POST: RentedCars/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Tendant,Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,CarsId,TenantId,RideTime")] RentedCars rentedCars)
@@ -133,6 +158,7 @@ namespace CarRentingProject_Melvin.Controllers
             return View(rentedCars);
         }
 
+        [Authorize(Roles = "Tendant,Admin")]
         // GET: RentedCars/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -154,6 +180,7 @@ namespace CarRentingProject_Melvin.Controllers
         }
 
         // POST: RentedCars/Delete/5
+        [Authorize(Roles = "Tendant,Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

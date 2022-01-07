@@ -75,9 +75,9 @@ namespace CarRentingProject_Melvin.Data
                         Birthday = DateTime.Now,
                         EmailConfirmed = true,
                     };
-                    userManager.CreateAsync(user, "V@c@nc3s");
-                    userManager.CreateAsync(user2, "V@c@nc3s");
-                    userManager.CreateAsync(user3, "V@c@nc3s");
+                    userManager.CreateAsync(user, "Student+1");
+                    userManager.CreateAsync(user2, "Student+1");
+                    userManager.CreateAsync(user3, "Student+1");
                 }
 
                 if (!context.Roles.Any())

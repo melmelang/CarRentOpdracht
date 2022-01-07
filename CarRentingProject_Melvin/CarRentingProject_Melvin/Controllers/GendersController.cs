@@ -1,11 +1,13 @@
 ﻿#nullable disable
 using CarRentingProject_Melvin.Data;
 using CarRentingProject_Melvin.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarRentingProject_Melvin.Controllers
 {
+    [Authorize(Roles = "Nobody")]
     public class GendersController : AppController
     {
 

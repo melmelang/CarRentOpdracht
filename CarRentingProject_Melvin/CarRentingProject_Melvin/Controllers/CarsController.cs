@@ -1,12 +1,14 @@
 ﻿#nullable disable
 using CarRentingProject_Melvin.Data;
 using CarRentingProject_Melvin.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarRentingProject_Melvin.Controllers
 {
+    [Authorize]
     public class CarsController : AppController
     {
 
@@ -22,7 +24,8 @@ namespace CarRentingProject_Melvin.Controllers
             {
                 var dBContext = _context.Cars.Include(c => c.Renter).Where(c => c.Renter.UserId == _user.Id);
                 return View(await dBContext.ToListAsync());
-            } else
+            }
+            else
             {
                 var dBContext = _context.Cars.Include(c => c.Renter);
                 return View(await dBContext.ToListAsync());
@@ -48,6 +51,7 @@ namespace CarRentingProject_Melvin.Controllers
             return View(cars);
         }
 
+        [Authorize(Roles = "Renter")]
         // GET: Cars/Create
         public IActionResult Create()
         {
@@ -58,6 +62,7 @@ namespace CarRentingProject_Melvin.Controllers
         // POST: Cars/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Renter")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Brand,Model,Price,ProductionDate,Mileage,RenterId")] Cars cars)
@@ -77,6 +82,7 @@ namespace CarRentingProject_Melvin.Controllers
             return View(cars);
         }
 
+        [Authorize(Roles = "Renter,Admin")]
         // GET: Cars/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -97,6 +103,7 @@ namespace CarRentingProject_Melvin.Controllers
         // POST: Cars/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Renter,Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Brand,Model,Price,ProductionDate,Mileage,RenterId")] Cars cars)
@@ -130,6 +137,7 @@ namespace CarRentingProject_Melvin.Controllers
             return View(cars);
         }
 
+        [Authorize(Roles = "Renter,Admin")]
         // GET: Cars/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -149,6 +157,7 @@ namespace CarRentingProject_Melvin.Controllers
             return View(cars);
         }
 
+        [Authorize(Roles = "Renter,Admin")]
         // POST: Cars/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
