@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CarRentingProject_Melvin.Migrations
 {
     [DbContext(typeof(DBContext))]
-    [Migration("20220107113354_AppMigration")]
+    [Migration("20220108103743_AppMigration")]
     partial class AppMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,6 +31,9 @@ namespace CarRentingProject_Melvin.Migrations
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
+
+                    b.Property<string>("AppLangId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Birthday")
                         .HasColumnType("datetime2");
@@ -53,6 +56,9 @@ namespace CarRentingProject_Melvin.Migrations
                     b.Property<string>("GenderId")
                         .IsRequired()
                         .HasColumnType("nvarchar(1)");
+
+                    b.Property<string>("LanguageAppLangId")
+                        .HasColumnType("nvarchar(2)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -94,6 +100,8 @@ namespace CarRentingProject_Melvin.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("GenderId");
+
+                    b.HasIndex("LanguageAppLangId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -154,6 +162,29 @@ namespace CarRentingProject_Melvin.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Gender");
+                });
+
+            modelBuilder.Entity("CarRentingProject_Melvin.Models.Language", b =>
+                {
+                    b.Property<string>("AppLangId")
+                        .HasMaxLength(2)
+                        .HasColumnType("nvarchar(2)");
+
+                    b.Property<string>("AppCultures")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("AppIsSystemLang")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("AppLangName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("AppLangId");
+
+                    b.ToTable("Languages");
                 });
 
             modelBuilder.Entity("CarRentingProject_Melvin.Models.RentedCars", b =>
@@ -405,7 +436,13 @@ namespace CarRentingProject_Melvin.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("CarRentingProject_Melvin.Models.Language", "Language")
+                        .WithMany()
+                        .HasForeignKey("LanguageAppLangId");
+
                     b.Navigation("Gender");
+
+                    b.Navigation("Language");
                 });
 
             modelBuilder.Entity("CarRentingProject_Melvin.Models.Cars", b =>

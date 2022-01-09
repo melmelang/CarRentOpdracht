@@ -20,6 +20,9 @@ builder.Services.AddDefaultIdentity<CarRentingProject_AppUser>(options => option
 builder.Services.AddMvc()
        .AddViewLocalization(Microsoft.AspNetCore.Mvc.Razor.LanguageViewLocationExpanderFormat.Suffix)
        .AddDataAnnotationsLocalization();
+
+builder.Services.AddLocalization(option => option.ResourcesPath = "Resources");
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpContextAccessor();
@@ -87,9 +90,9 @@ using (var scope = app.Services.CreateScope())
     DatabaseSeeder.Initialize(services, userManager);
 }
 
-var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture("nl-BE");
-//.AddSupportedCultures(Language.SupportedLanguages)
-//.AddSupportedUICultures(Language.SupportedLanguages);
+var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture("nl-BE")
+.AddSupportedCultures(Language.AppSuppLang)
+.AddSupportedUICultures(Language.AppSuppLang);
 
 app.UseRequestLocalization(localizationOptions);
 

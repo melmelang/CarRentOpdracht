@@ -1,16 +1,17 @@
-﻿@model AppUserViewModel
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Loc
+@model AppUserViewModel
 
-@using Microsoft.AspNetCore.Mvc.Localization
 @using CarRentingProject_Melvin.Areas.Identity.Data
 @inject IViewLocalizer Localizer;
 
 
 
 @{
-    ViewData["Title"] = Localizer["Change Roles"];
+    ViewData["Title"] = Loc["Change Roles"];
 }
 
-<h2>@Model.UserName: @Localizer["Change Roles"]</h2>
+<h2>@Model.UserName: @Loc["Change Roles"]</h2>
 
 <hr />
 <div class="row">
@@ -19,47 +20,62 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label class="control-label">@Localizer["UserName"]
+                <label class="control-label">@Loc["User Name"]
                 <input class="filled-in" asp-for="UserName" class="form-control" asp-items="ViewBag.GroupId" disabled></input>
                 <span asp-validation-for="UserName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">@Localizer["First Name"]</label>
+                <label class="control-label">@Loc["Firstname"]</label>
                 <input class="filled-in" asp-for="FirstName" class="form-control" asp-items="ViewBag.UserId" disabled></input>
                 <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">@Localizer["Last Name"]</label>
+                <label class="control-label">@Loc["Lastname"]</label>
                 <input class="filled-in" asp-for="LastName" class="form-control" disabled/>
                 <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">@Localizer["Tenant"]
+                <label class="control-label">@Loc["Birthday"]</label>
+                <input class="filled-in" asp-for="Birthday" class="form-control" disabled/>
+                <span asp-validation-for="Birthday" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">@Loc["GenderId"]</label>
+                <input class="filled-in" asp-for="GenderId" class="form-control" disabled/>
+                <span asp-validation-for="GenderId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">@Loc["Phone Number"]</label>
+                <input class="filled-in" asp-for="PhoneNumber" class="form-control" disabled/>
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">@Loc["Tenant"]
                 <input class="filled-in" type="checkbox" asp-for="@Model.Tenant" />
                 <span asp-validation-for="Tenant" class="text-danger"></span>
                 </label>
             </div>
             <div class="form-group">
-                <label class="control-label">@Localizer["Renter"]
+                <label class="control-label">@Loc["Renter"]
                 <input class="filled-in" type="checkbox" asp-for="@Model.Renter" />
                 <span asp-validation-for="Renter" class="text-danger"></span>
                 </label>
             </div>
             <div class="form-group">
-                <label class="control-label">@Localizer["Admin"]
+                <label class="control-label">@Loc["Admin"]
                 <input class="filled-in" type="checkbox" asp-for="@Model.Admin" />
                 <span asp-validation-for="Admin" class="text-danger"></span>
                 </label>
             </div>
             <div class="form-group">
-                <input type="submit" value="@Localizer["Save"]" class="btn btn-primary" />
+                <input type="submit" value="@Loc["Save"]" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">@Localizer["Back to List"]</a>
+    <a asp-action="Index">@Loc["Back to List"]</a>
 </div>
 
 @section Scripts {

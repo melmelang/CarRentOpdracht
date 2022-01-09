@@ -1,4 +1,6 @@
-﻿@model IEnumerable<CarRentingProject_Melvin.Models.Cars>
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Loc
+@model IEnumerable<CarRentingProject_Melvin.Models.Cars>
 
 @{
     ViewData["Title"] = "Index";
@@ -7,28 +9,28 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">@Loc["Create New"]</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Brand)
+                @Loc["Brand"]
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Model)
+                @Loc["Model"]
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                @Loc["Price"]
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProductionDate)
+                @Loc["Production date"]
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Mileage)
+                @Loc["Mileage"]
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Renter)
+                @Loc["Renter"]
             </th>
             <th></th>
         </tr>
@@ -55,10 +57,10 @@
                 @Html.DisplayFor(modelItem => item.Renter.FirstName)
             </td>
             <td>
-                <a asp-controller="RentedCars" asp-action="Create" asp-route-id="@item.Id" asp-route-wich="2">Rent</a> |
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-controller="RentedCars" asp-action="Create" asp-route-id="@item.Id" asp-route-wich="2">@Loc["Rent"]</a> |
+                <a asp-action="Edit" asp-route-id="@item.Id">@Loc["Edit"]</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">@Loc["Details"]</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">@Loc["Delete"]</a>
             </td>
         </tr>
 }

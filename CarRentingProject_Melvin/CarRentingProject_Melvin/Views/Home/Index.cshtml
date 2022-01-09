@@ -1,8 +1,10 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Loc
+@{
+    ViewData["Title"] = @Loc["Home Page"];
 }
 
 <div class="text-center">
-    <h1 class="display-4">WELCOME</h1>
-    <p>Een korte beschrijving van het project.</p>
+    <h1 class="display-4">@Loc["WELCOME"]</h1>
+    <p>@Loc["Welcom to the car rent company. I hope you can find what you want."]</p>
 </div>

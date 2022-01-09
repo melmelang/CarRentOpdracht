@@ -17,6 +17,14 @@
         },
         "runtime": {
           "CarRentingProject_Melvin.dll": {}
+        },
+        "resources": {
+          "fr/CarRentingProject_Melvin.resources.dll": {
+            "locale": "fr"
+          },
+          "nl/CarRentingProject_Melvin.resources.dll": {
+            "locale": "nl"
+          }
         }
       },
       "Humanizer.Core/2.8.26": {

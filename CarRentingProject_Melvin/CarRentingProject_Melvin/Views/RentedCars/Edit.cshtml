@@ -1,12 +1,14 @@
-﻿@model CarRentingProject_Melvin.Models.RentedCars
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Loc
+@model CarRentingProject_Melvin.Models.RentedCars
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = @Loc["Edit"];
 }
 
-<h1>Edit</h1>
+<h1>@Loc["Edit"]</h1>
 
-<h4>RentedCars</h4>
+<h4>@Loc["Rented cars"]</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -14,29 +16,29 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="CarsId" class="control-label"></label>
+                <label asp-for="CarsId" class="control-label">@Loc["Cars"]</label>
                 <select asp-for="CarsId" class="form-control" asp-items="ViewBag.CarsId"></select>
                 <span asp-validation-for="CarsId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="TenantId" class="control-label"></label>
+                <label asp-for="TenantId" class="control-label">@Loc["Tenant"]</label>
                 <select asp-for="TenantId" class="form-control" asp-items="ViewBag.TenantId"></select>
                 <span asp-validation-for="TenantId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="RideTime" class="control-label"></label>
+                <label asp-for="RideTime" class="control-label">@Loc["Ride time"]</label>
                 <input asp-for="RideTime" class="form-control" />
                 <span asp-validation-for="RideTime" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="@Loc["Save"]" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">@Loc["Back to List"]</a>
 </div>
 
 @section Scripts {

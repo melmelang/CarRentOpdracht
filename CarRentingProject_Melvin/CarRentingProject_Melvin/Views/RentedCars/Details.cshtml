@@ -1,29 +1,31 @@
-﻿@model CarRentingProject_Melvin.Models.RentedCars
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Loc
+@model CarRentingProject_Melvin.Models.RentedCars
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = @Loc["Details"];
 }
 
-<h1>Details</h1>
+<h1>@Loc["Details"]</h1>
 
 <div>
-    <h4>RentedCars</h4>
+    <h4>@Loc["Rented cars"]</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Cars)
+            @Loc["Cars"]
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Cars.Brand)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Tenant)
+            @Loc["Tenant"]
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Tenant.FirstName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RideTime)
+            @Loc["Ride time"]
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.RideTime)
@@ -31,6 +33,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">@Loc["Edit"]</a> |
+    <a asp-action="Index">@Loc["Back to List"]</a>
 </div>

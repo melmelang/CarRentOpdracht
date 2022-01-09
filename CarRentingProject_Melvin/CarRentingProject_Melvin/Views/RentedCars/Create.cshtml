@@ -1,19 +1,21 @@
-﻿@model CarRentingProject_Melvin.Models.RentedCars
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Loc
+@model CarRentingProject_Melvin.Models.RentedCars
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = @Loc["Create"];
 }
 
-<h1>Create</h1>
+<h1>@Loc["Create"]</h1>
 
-<h4>RentedCars</h4>
+<h4>@Loc["Rent cars"]</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create" asp-route-id="" asp-route-wich="">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="CarsId" class="control-label"></label>
+                <label asp-for="CarsId" class="control-label">@Loc["Cars"]</label>
                 <select asp-for="CarsId" class ="form-control" asp-items="ViewBag.CarsId"></select>
             </div>
             @*<div class="form-group">
@@ -21,19 +23,19 @@
                 <select asp-for="TenantId" class ="form-control" asp-items="ViewBag.TenantId"></select>
             </div>*@
             <div class="form-group">
-                <label asp-for="RideTime" class="control-label"></label>
+                <label asp-for="RideTime" class="control-label">@Loc["Ride time"]</label>
                 <input asp-for="RideTime" class="form-control" />
                 <span asp-validation-for="RideTime" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="@Loc["Create"]" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">@Loc["Back to List"]</a>
 </div>
 
 @section Scripts {

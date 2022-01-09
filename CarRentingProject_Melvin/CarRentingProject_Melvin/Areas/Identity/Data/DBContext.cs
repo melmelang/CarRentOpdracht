@@ -13,6 +13,8 @@ public class DBContext : IdentityDbContext<CarRentingProject_AppUser>
 
     public DbSet<CarRentingProject_Melvin.Models.Gender> Gender { get; set; }
 
+    public DbSet<CarRentingProject_Melvin.Models.Language> Languages { get; set; }
+
     public DbSet<CarRentingProject_Melvin.Models.Cars> Cars { get; set; }
 
     public DbSet<CarRentingProject_Melvin.Models.Renter> Renter { get; set; }

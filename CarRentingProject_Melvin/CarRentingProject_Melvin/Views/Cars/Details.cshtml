@@ -1,47 +1,50 @@
-﻿@model CarRentingProject_Melvin.Models.Cars
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Loc
+@model CarRentingProject_Melvin.Models.Cars
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = @Loc["Details"];
 }
 
-<h1>Details</h1>
+<h1>@Loc["Details"]</h1>
 
 <div>
-    <h4>Cars</h4>
+    <h4>@Loc["Cars"]</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
+            @Loc["Brand"]
             @Html.DisplayNameFor(model => model.Brand)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Brand)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Model)
+            @Loc["Model"]
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Model)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
+            @Loc["Price"]
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Price)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProductionDate)
+            @Loc["ProductionDate"]
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ProductionDate)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Mileage)
+            @Loc["Mileage"]
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Mileage)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Renter)
+            @Loc["Renter"]
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Renter.FirstName)
@@ -49,6 +52,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">@Loc["Edit"]</a> |
+    <a asp-action="Index">@Loc["Back to List"]</a>
 </div>

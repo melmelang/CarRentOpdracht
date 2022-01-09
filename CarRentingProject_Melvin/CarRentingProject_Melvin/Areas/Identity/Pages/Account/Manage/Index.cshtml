@@ -1,4 +1,7 @@
 ﻿@page
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Loc
+@using CarRentingProject_Melvin.Models
 @model IndexModel
 @{
     ViewData["Title"] = "Profile";
@@ -19,6 +22,15 @@
                 <input asp-for="Input.PhoneNumber" class="form-control" />
                 <label asp-for="Input.PhoneNumber" class="form-label"></label>
                 <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <select asp-for="Input.LangId" class="form-control">
+                    @foreach (Language l in (List<Language>)ViewData["Languages"])
+                    {
+                        <option value=@l.AppLangId>@l.AppLangName</option>
+                    }
+                </select>
+                <label asp-for="Input.LangId" class="form-label">@Loc["Language choice"]</label>
             </div>
             <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
         </form>

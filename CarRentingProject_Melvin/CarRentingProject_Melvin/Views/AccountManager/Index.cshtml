@@ -1,15 +1,16 @@
-﻿@model PageList<AppUserViewModel>
-@using Microsoft.AspNetCore.Mvc.Localization
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Loc
+@model PageList<AppUserViewModel>
 @using CarRentingProject_Melvin.Areas.Identity.Data
 @inject IViewLocalizer Localizer;
 
 
 @{
-    ViewData["Title"] = Localizer["Gebruikersbeheer"];
-    string VerticaalStreepje = " | ";
+    ViewData["Title"] = Loc["User Management"];
+    string VerticalLine = " | ";
 }
 
-<h1>@Localizer["Index"]</h1>
+<h1>@Loc["Index"]</h1>
 
 
 <table class="striped centered responsive-table highlight ">
@@ -17,31 +18,31 @@
     <thead>
         <tr>
             <th>
-                @Localizer["Gebruikersnaam"]
+                @Loc["User Name"]
             </th>
             <th>
-                @Localizer["FirstName"]
+                @Loc["Firstname"]
             </th>
             <th>
-                @Localizer["LastName"]
+                @Loc["Lastname"]
             </th>
             <th>
-                @Localizer["Birthday"]
+                @Loc["Birthday"]
             </th>
             <th>
-                @Localizer["GenderId"]
+                @Loc["GenderId"]
             </th>
             <th>
-                @Localizer["Email"]
+                @Loc["Email"]
             </th>
             <th>
-                @Localizer["Telefoonnummer"]
+                @Loc["Phone Number"]
             </th>
             <th>
-                @Localizer["Locked"]
+                @Loc["Locked"]
 
             </th>
-            <th colspan=4 class="align-content-center">@Localizer["Roles"]</th>
+            <th colspan=4 class="align-content-center">@Loc["Roles"]</th>
             <th></th>
         </tr>
         <tr>
@@ -58,13 +59,13 @@
             <th></th>
             <th></th>
             <th></th>
-            <th>Tenant</th>
-            <th>Renter</th>
-            <th>Admin</th>
+            <th>@Loc["Tenant"]</th>
+            <th>@Loc["Renter"]</th>
+            <th>@Loc["Admin"]</th>
             
              
             <th>
-                <input type="submit" value=@Localizer["Filter"] >
+                <input type="submit" value=@Loc["Filter"] >
             </th>
         </tr>
     </thead>
@@ -111,13 +112,13 @@
             <td>
                 @if (!item.Lockout)
                 {
-                    <a asp-action="Locking" asp-route-id="@item.Id">@Localizer["Lock"]</a> @VerticaalStreepje
+                    <a asp-action="Locking" asp-route-id="@item.Id">@Loc["Lock"]</a> @VerticalLine
                 }
                 else
                 {
-                    <a asp-action="Locking" asp-route-id="@item.Id">@Localizer["Unlock"]</a> @VerticaalStreepje
+                    <a asp-action="Locking" asp-route-id="@item.Id">@Loc["Unlock"]</a> @VerticalLine
                 }
-                <a asp-action="Roles" asp-route-id="@item.Id">@Localizer["Roles"]</a>
+                <a asp-action="Roles" asp-route-id="@item.Id">@Loc["Roles"]</a>
             </td>
 
         </tr>
@@ -136,7 +137,7 @@
    asp-route-name=@ViewData["name"]
    asp-route-pageNumber="@(Model.PageIndex - 1)"
    class="btn btn-default @prevDisabled">
-   @Localizer["Previous"]
+   @Loc["Previous"]
 </a>
 <a asp-action="Index"
    asp-route-userName=@ViewData["userName"] 
@@ -144,7 +145,7 @@
    asp-route-email=@ViewData["email"]
    asp-route-pageNumber="@(Model.PageIndex + 1)"
    class="btn btn-default @nextDisabled">
-   @Localizer["Next"]
+   @Loc["Next"]
 </a>
 
 @section Scripts {

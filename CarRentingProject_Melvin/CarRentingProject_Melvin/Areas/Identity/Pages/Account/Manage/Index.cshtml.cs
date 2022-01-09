@@ -3,7 +3,10 @@
 #nullable disable
 
 using CarRentingProject_Melvin.Areas.Identity.Data;
+using CarRentingProject_Melvin.Data;
+using CarRentingProject_Melvin.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
@@ -14,13 +17,16 @@ namespace CarRentingProject_Melvin.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<CarRentingProject_AppUser> _userManager;
         private readonly SignInManager<CarRentingProject_AppUser> _signInManager;
+        private readonly DBContext _dbContext;
 
         public IndexModel(
             UserManager<CarRentingProject_AppUser> userManager,
-            SignInManager<CarRentingProject_AppUser> signInManager)
+            SignInManager<CarRentingProject_AppUser> signInManager,
+            DBContext dbContext)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _dbContext = dbContext;
         }
 
         /// <summary>
@@ -53,9 +59,13 @@ namespace CarRentingProject_Melvin.Areas.Identity.Pages.Account.Manage
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+
+            public string LangId { get; set; }
         }
 
         private async Task LoadAsync(CarRentingProject_AppUser user)
@@ -67,8 +77,13 @@ namespace CarRentingProject_Melvin.Areas.Identity.Pages.Account.Manage
 
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                PhoneNumber = phoneNumber,
+                LangId = user.AppLangId
             };
+            ViewData["Languages"] = Language.AppSystemLang;
+            ViewData["LanguageId"] = user.AppLangId;
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -95,6 +110,25 @@ namespace CarRentingProject_Melvin.Areas.Identity.Pages.Account.Manage
             {
                 await LoadAsync(user);
                 return Page();
+            }
+
+            if (user.FirstName != Input.FirstName ||
+                 user.LastName != Input.LastName ||
+                 user.AppLangId != Input.LangId)
+            {
+                user.FirstName = Input.FirstName;
+                user.LastName = Input.LastName;
+
+                user.Language = _dbContext.Languages.FirstOrDefault(l => l.AppLangId == Input.LangId);
+                user.AppLangId = Input.LangId;
+                _dbContext.Update(user);
+                _dbContext.SaveChanges();
+
+                // Update the language/culture
+                Response.Cookies.Append(
+                    CookieRequestCultureProvider.DefaultCookieName,
+                    CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(Input.LangId)),
+                    new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) });
             }
 
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);

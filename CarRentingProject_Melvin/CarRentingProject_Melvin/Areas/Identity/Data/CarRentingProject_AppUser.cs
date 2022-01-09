@@ -11,6 +11,8 @@ public class CarRentingProject_AppUser : IdentityUser
     public DateTime Birthday { get; set; }
     public char GenderId { get; set; }
     public Gender? Gender { get; set; }
+    public string? AppLangId { get; set; }
+    public Language? Language { get; set; }
 }
 
 public class AppUserViewModel
@@ -23,6 +25,8 @@ public class AppUserViewModel
     public char GenderId { get; set; }
     public string Email { get; set; }
     public string PhoneNumber { get; set; }
+    public string? AppLangId { get; set; }
+    public Language? Language { get; set; }
     public bool Lockout { get; set; }
     public bool Tenant { get; set; }
     public bool Renter { get; set; }

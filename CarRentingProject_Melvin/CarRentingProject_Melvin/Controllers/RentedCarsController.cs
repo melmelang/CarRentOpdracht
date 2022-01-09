@@ -63,7 +63,7 @@ namespace CarRentingProject_Melvin.Controllers
             return View(rentedCars);
         }
 
-        [Authorize(Roles = "Tendant")]
+        [Authorize(Roles = "Tenant")]
         // GET: RentedCars/Create
         public IActionResult Create(int? id, int? wich)
         {
@@ -80,7 +80,7 @@ namespace CarRentingProject_Melvin.Controllers
         // POST: RentedCars/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Tendant")]
+        [Authorize(Roles = "Tenant")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(int? id, int? wich, [Bind("Id,CarsId,TenantId,RideTime")] RentedCars rentedCars)
@@ -101,7 +101,7 @@ namespace CarRentingProject_Melvin.Controllers
             return View(rentedCars);
         }
 
-        [Authorize(Roles = "Tendant,Admin")]
+        [Authorize(Roles = "Tenant,Admin")]
         // GET: RentedCars/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -123,7 +123,7 @@ namespace CarRentingProject_Melvin.Controllers
         // POST: RentedCars/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Tendant,Admin")]
+        [Authorize(Roles = "Tenant,Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,CarsId,TenantId,RideTime")] RentedCars rentedCars)
@@ -158,7 +158,7 @@ namespace CarRentingProject_Melvin.Controllers
             return View(rentedCars);
         }
 
-        [Authorize(Roles = "Tendant,Admin")]
+        [Authorize(Roles = "Tenant,Admin")]
         // GET: RentedCars/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -180,7 +180,7 @@ namespace CarRentingProject_Melvin.Controllers
         }
 
         // POST: RentedCars/Delete/5
-        [Authorize(Roles = "Tendant,Admin")]
+        [Authorize(Roles = "Tenant,Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

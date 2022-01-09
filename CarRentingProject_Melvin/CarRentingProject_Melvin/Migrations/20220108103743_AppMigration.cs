@@ -36,6 +36,20 @@ namespace CarRentingProject_Melvin.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Languages",
+                columns: table => new
+                {
+                    AppLangId = table.Column<string>(type: "nvarchar(2)", maxLength: 2, nullable: false),
+                    AppLangName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    AppCultures = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AppIsSystemLang = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Languages", x => x.AppLangId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -65,6 +79,8 @@ namespace CarRentingProject_Melvin.Migrations
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Birthday = table.Column<DateTime>(type: "datetime2", nullable: false),
                     GenderId = table.Column<string>(type: "nvarchar(1)", nullable: false),
+                    AppLangId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LanguageAppLangId = table.Column<string>(type: "nvarchar(2)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -89,6 +105,11 @@ namespace CarRentingProject_Melvin.Migrations
                         principalTable: "Gender",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AspNetUsers_Languages_LanguageAppLangId",
+                        column: x => x.LanguageAppLangId,
+                        principalTable: "Languages",
+                        principalColumn: "AppLangId");
                 });
 
             migrationBuilder.CreateTable(
@@ -322,6 +343,11 @@ namespace CarRentingProject_Melvin.Migrations
                 column: "GenderId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AspNetUsers_LanguageAppLangId",
+                table: "AspNetUsers",
+                column: "LanguageAppLangId");
+
+            migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
@@ -401,6 +427,9 @@ namespace CarRentingProject_Melvin.Migrations
 
             migrationBuilder.DropTable(
                 name: "Gender");
+
+            migrationBuilder.DropTable(
+                name: "Languages");
         }
     }
 }
