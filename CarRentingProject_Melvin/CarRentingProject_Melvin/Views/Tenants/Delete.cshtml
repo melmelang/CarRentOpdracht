@@ -1,42 +1,44 @@
-﻿@model CarRentingProject_Melvin.Models.Tenant
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Loc
+@model CarRentingProject_Melvin.Models.Tenant
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = @Loc["Delete"];
 }
 
-<h1>Delete</h1>
+<h1>@Loc["Delete"]</h1>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>@Loc["Are you sure you want to delete this?"]</h3>
 <div>
-    <h4>Tenant</h4>
+    <h4>@Loc["Tenant"]</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FirstName)
+            @Loc["Firstname"]
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.FirstName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LastName)
+            @Loc["Lastname"]
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.LastName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UserName)
+            @Loc["User Name"]
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.UserName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Birthday)
+            @Loc["Birthday"]
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Birthday)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Gender)
+            @Loc["Gender"]
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Gender.Name)
@@ -45,7 +47,7 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="@Loc["Delete"]" class="btn btn-danger" /> |
+        <a asp-action="Index">@Loc["Back to List"]</a>
     </form>
 </div>

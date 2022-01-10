@@ -1,9 +1,9 @@
 ﻿using CarRentingProject_Melvin.Areas.Identity.Data;
 using CarRentingProject_Melvin.Data;
+using CarRentingProject_Melvin.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using CarRentingProject_Melvin.Models;
 
 namespace CarRentingProject_Melvin.Controllers
 {

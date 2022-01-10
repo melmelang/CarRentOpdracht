@@ -1,41 +1,43 @@
-﻿@model CarRentingProject_Melvin.Models.Tenant
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Loc
+@model CarRentingProject_Melvin.Models.Tenant
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = @Loc["Details"];
 }
 
-<h1>Details</h1>
+<h1>@Loc["Details"]</h1>
 
 <div>
-    <h4>Tenant</h4>
+    <h4>@Loc["Tenant"]</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FirstName)
+            @Loc["Firstname"]
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.FirstName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LastName)
+            @Loc["Lastname"]
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.LastName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UserName)
+            @Loc["User Name"]
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.UserName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Birthday)
+            @Loc["Birthday"]
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Birthday)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Gender)
+            @Loc["Gender"]
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Gender.Name)
@@ -43,6 +45,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">@Loc["Edit"]</a> |
+    <a asp-action="Index">@Loc["Back to List"]</a>
 </div>

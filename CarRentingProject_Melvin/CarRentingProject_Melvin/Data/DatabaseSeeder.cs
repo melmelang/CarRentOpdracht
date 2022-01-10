@@ -55,8 +55,8 @@ namespace CarRentingProject_Melvin.Data
 
                 if (!context.Users.Any())
                 {
-                    CarRentingProject_AppUser dummy = new CarRentingProject_AppUser 
-                    { 
+                    CarRentingProject_AppUser dummy = new CarRentingProject_AppUser
+                    {
                         Id = "-",
                         FirstName = "-",
                         LastName = "-",
@@ -64,7 +64,7 @@ namespace CarRentingProject_Melvin.Data
                         Email = "?@?.?",
                         GenderId = '-',
                         Birthday = DateTime.MinValue,
-                        AppLangId = "-" 
+                        AppLangId = "-"
                     };
                     context.Users.Add(dummy);
                     context.SaveChanges();

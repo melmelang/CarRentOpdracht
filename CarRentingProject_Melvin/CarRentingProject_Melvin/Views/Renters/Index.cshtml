@@ -1,31 +1,33 @@
-﻿@model IEnumerable<CarRentingProject_Melvin.Models.Renter>
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Loc
+@model IEnumerable<CarRentingProject_Melvin.Models.Renter>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = @Loc["Index"];
 }
 
-<h1>Index</h1>
+<h1>@Loc["Index"]</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">@Loc["Create New"]</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.FirstName)
+                @Loc["Firstname"]
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LastName)
+                @Loc["Lastname"]
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.UserName)
+                @Loc["User Name"]
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Birthday)
+                @Loc["Birthday"]
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Gender)
+                @Loc["Gender"]
             </th>
             <th></th>
         </tr>
@@ -49,9 +51,9 @@
                 @Html.DisplayFor(modelItem => item.Gender.Name)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id">@Loc["Edit"]</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">@Loc["Details"]</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">@Loc["Delete"]</a>
             </td>
         </tr>
 }

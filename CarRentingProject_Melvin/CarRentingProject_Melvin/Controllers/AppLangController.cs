@@ -1,18 +1,16 @@
 ﻿using CarRentingProject_Melvin.Areas.Identity.Data;
 using CarRentingProject_Melvin.Data;
 using CarRentingProject_Melvin.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Localization;
 
 namespace CarRentingProject_Melvin.Controllers
 {
     public class AppLangController : AppController
     {
-        public AppLangController(DBContext context, IHttpContextAccessor httpContextAccessor, 
-                                 ILogger<AppController> logger) : 
+        public AppLangController(DBContext context, IHttpContextAccessor httpContextAccessor,
+                                 ILogger<AppController> logger) :
                                  base(context, httpContextAccessor, logger)
         {
         }

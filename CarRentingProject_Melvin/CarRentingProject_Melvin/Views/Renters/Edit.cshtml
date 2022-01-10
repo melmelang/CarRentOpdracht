@@ -1,12 +1,14 @@
-﻿@model CarRentingProject_Melvin.Models.Renter
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Loc
+@model CarRentingProject_Melvin.Models.Renter
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = @Loc["Edit"];
 }
 
-<h1>Edit</h1>
+<h1>@Loc["Edit"]</h1>
 
-<h4>Renter</h4>
+<h4>@Loc["Renter"]</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -14,39 +16,39 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="FirstName" class="control-label"></label>
+                <label asp-for="FirstName" class="control-label">@Loc["Firstname"]</label>
                 <input asp-for="FirstName" class="form-control" />
                 <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LastName" class="control-label"></label>
+                <label asp-for="LastName" class="control-label">@Loc["Lastname"]</label>
                 <input asp-for="LastName" class="form-control" />
                 <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="UserName" class="control-label"></label>
+                <label asp-for="UserName" class="control-label">@Loc["User Name"]</label>
                 <input asp-for="UserName" class="form-control" />
                 <span asp-validation-for="UserName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Birthday" class="control-label"></label>
+                <label asp-for="Birthday" class="control-label">@Loc["Birthday"]</label>
                 <input asp-for="Birthday" class="form-control" />
                 <span asp-validation-for="Birthday" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="GenderId" class="control-label"></label>
+                <label asp-for="GenderId" class="control-label">@Loc["Gender"]</label>
                 <select asp-for="GenderId" class="form-control" asp-items="ViewBag.GenderId"></select>
                 <span asp-validation-for="GenderId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="@Loc["Save"]" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">@Loc["Back to List"]</a>
 </div>
 
 @section Scripts {
