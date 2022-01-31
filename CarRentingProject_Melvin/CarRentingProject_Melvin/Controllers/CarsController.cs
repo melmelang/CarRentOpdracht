@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CarRentingProject_Melvin.Controllers
 {
-    [Authorize]
     public class CarsController : AppController
     {
 

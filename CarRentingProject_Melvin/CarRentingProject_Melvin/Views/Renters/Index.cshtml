@@ -4,13 +4,18 @@
 
 @{
     ViewData["Title"] = @Loc["Index"];
+    string VerticalLine = " | ";
 }
 
 <h1>@Loc["Index"]</h1>
 
-<p>
-    <a asp-action="Create">@Loc["Create New"]</a>
-</p>
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        <a asp-action="Create">@Loc["Create New"]</a>
+    </p>
+}
+
 <table class="table">
     <thead>
         <tr>
@@ -51,9 +56,17 @@
                 @Html.DisplayFor(modelItem => item.Gender.Name)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">@Loc["Edit"]</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">@Loc["Details"]</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">@Loc["Delete"]</a>
+                @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id">@Loc["Edit"]</a> @VerticalLine
+                    }
+
+                <a asp-action="Details" asp-route-id="@item.Id">@Loc["Details"]</a> @VerticalLine
+
+                @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-action="Delete" asp-route-id="@item.Id">@Loc["Delete"]</a>
+                    }
             </td>
         </tr>
 }

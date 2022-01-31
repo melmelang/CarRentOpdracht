@@ -1,6 +1,13 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Localization
 @inject IViewLocalizer Loc
 
+@{
+    string cookieCulture = Context.Request.Cookies["cookieAgreement"];
+
+    Console.WriteLine("test");
+
+}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,11 +29,11 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Cars" asp-action="Index">@Loc["Cars"]</a>
+                        </li>
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Cars" asp-action="Index">@Loc["Cars"]</a>
-                            </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="RentedCars" asp-action="Index">@Loc["Cars rent"]</a>
                             </li>

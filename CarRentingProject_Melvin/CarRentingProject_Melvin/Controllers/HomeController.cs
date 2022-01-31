@@ -16,6 +16,7 @@ namespace CarRentingProject_Melvin.Controllers
 
         public IActionResult Index()
         {
+            Response.Cookies.Append("cookieAgreement", "");
             return View();
         }
 
