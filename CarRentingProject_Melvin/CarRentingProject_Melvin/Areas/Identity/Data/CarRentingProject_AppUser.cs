@@ -9,6 +9,7 @@ public class CarRentingProject_AppUser : IdentityUser
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public DateTime Birthday { get; set; }
+    public bool AcceptCookie { get; set; }
     public char GenderId { get; set; }
     public Gender? Gender { get; set; }
     public string? AppLangId { get; set; }

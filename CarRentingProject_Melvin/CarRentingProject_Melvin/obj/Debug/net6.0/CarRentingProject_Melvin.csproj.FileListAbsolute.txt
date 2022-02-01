@@ -895,3 +895,6 @@ C:\Users\angeli melvin\Documents\GitHub\CarRentOpdracht\CarRentingProject_Melvin
 C:\Users\angeli melvin\Documents\GitHub\CarRentOpdracht\CarRentingProject_Melvin\CarRentingProject_Melvin\obj\Debug\net6.0\CarRentingProject_Melvin.Resources.Areas.Identity.Pages.Account.ResendEmailConfirmation.nl.resources
 C:\Users\angeli melvin\Documents\GitHub\CarRentOpdracht\CarRentingProject_Melvin\CarRentingProject_Melvin\obj\Debug\net6.0\CarRentingProject_Melvin.Resources.Areas.Identity.Pages.Account.ResetPassword.fr.resources
 C:\Users\angeli melvin\Documents\GitHub\CarRentOpdracht\CarRentingProject_Melvin\CarRentingProject_Melvin\obj\Debug\net6.0\CarRentingProject_Melvin.Resources.Areas.Identity.Pages.Account.ResetPassword.nl.resources
+C:\Users\angeli melvin\Documents\GitHub\CarRentOpdracht\CarRentingProject_Melvin\CarRentingProject_Melvin\bin\Debug\net6.0\libman.json
+C:\Users\angeli melvin\Documents\GitHub\CarRentOpdracht\CarRentingProject_Melvin\CarRentingProject_Melvin\obj\Debug\net6.0\CarRentingProject_Melvin.Resources.Views.Bronnen.Index.fr.resources
+C:\Users\angeli melvin\Documents\GitHub\CarRentOpdracht\CarRentingProject_Melvin\CarRentingProject_Melvin\obj\Debug\net6.0\CarRentingProject_Melvin.Resources.Views.Bronnen.Index.nl.resources

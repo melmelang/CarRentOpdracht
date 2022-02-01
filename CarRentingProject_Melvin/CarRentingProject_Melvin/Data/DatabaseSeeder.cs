@@ -63,6 +63,7 @@ namespace CarRentingProject_Melvin.Data
                         UserName = "-",
                         Email = "?@?.?",
                         GenderId = '-',
+                        AcceptCookie = false,
                         Birthday = DateTime.MinValue,
                         AppLangId = "-"
                     };
@@ -75,6 +76,7 @@ namespace CarRentingProject_Melvin.Data
                         UserName = "Melvin.Angeli",
                         Email = "Angeli.melvin@hotmail.com",
                         GenderId = '-',
+                        AcceptCookie = false,
                         Birthday = DateTime.Now,
                         EmailConfirmed = true,
                         AppLangId = "fr"
@@ -86,6 +88,7 @@ namespace CarRentingProject_Melvin.Data
                         UserName = "Antoine.Couck",
                         Email = "Angeli.melvin@hotmail.com",
                         GenderId = 'M',
+                        AcceptCookie = false,
                         Birthday = DateTime.Now,
                         EmailConfirmed = true,
                         AppLangId = "nl"

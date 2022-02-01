@@ -64,6 +64,7 @@ namespace CarRentingProject_Melvin.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+            public bool AcceptCookie { get; set; }
 
             public string LangId { get; set; }
         }
@@ -80,6 +81,7 @@ namespace CarRentingProject_Melvin.Areas.Identity.Pages.Account.Manage
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 PhoneNumber = phoneNumber,
+                AcceptCookie = user.AcceptCookie,
                 LangId = user.AppLangId
             };
             ViewData["Languages"] = Language.AppSystemLang;
@@ -114,10 +116,13 @@ namespace CarRentingProject_Melvin.Areas.Identity.Pages.Account.Manage
 
             if (user.FirstName != Input.FirstName ||
                  user.LastName != Input.LastName ||
-                 user.AppLangId != Input.LangId)
+                 user.AppLangId != Input.LangId ||
+                 user.AcceptCookie != Input.AcceptCookie)
             {
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
+
+                user.AcceptCookie = Input.AcceptCookie;
 
                 user.Language = _dbContext.Languages.FirstOrDefault(l => l.AppLangId == Input.LangId);
                 user.AppLangId = Input.LangId;

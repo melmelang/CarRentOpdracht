@@ -5,10 +5,10 @@ using System.Diagnostics;
 
 namespace CarRentingProject_Melvin.Controllers
 {
-    public class BronnenController : AppController
+    public class HomeController : AppController
     {
 
-        public BronnenController(DBContext context, IHttpContextAccessor httpContextAccessor,
+        public HomeController(DBContext context, IHttpContextAccessor httpContextAccessor,
                                     ILogger<AppController> logger) : base(context, httpContextAccessor, logger)
         {
         }
@@ -18,11 +18,15 @@ namespace CarRentingProject_Melvin.Controllers
             return View();
         }
 
-        public IActionResult Bronnen()
+        public IActionResult Privacy()
         {
             return View();
         }
 
+        public IActionResult partial()
+        {
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

@@ -117,25 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Accept Cookies" xml:space="preserve">
-    <value>Accepter les Cookies</value>
+  <data name="from the Hello World partial" xml:space="preserve">
+    <value>from the Hello World partial</value>
   </data>
-  <data name="Firstname" xml:space="preserve">
-    <value>Prénom</value>
-  </data>
-  <data name="Language choice" xml:space="preserve">
-    <value>Chois de langue</value>
-  </data>
-  <data name="Lastname" xml:space="preserve">
-    <value>Nom de famille</value>
-  </data>
-  <data name="Phone Number" xml:space="preserve">
-    <value>Numéro de téléphone</value>
-  </data>
-  <data name="Save" xml:space="preserve">
-    <value>Sauvegarder</value>
-  </data>
-  <data name="User Name" xml:space="preserve">
-    <value>Nom d'utilisateur</value>
+  <data name="Test" xml:space="preserve">
+    <value>Test</value>
   </data>
 </root>

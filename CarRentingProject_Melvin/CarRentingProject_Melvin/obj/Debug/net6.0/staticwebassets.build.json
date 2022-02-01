@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "wZ7HJsqcDPK9Q08GednZQZPKlncngHPfMGpsGKiAMAg=",
+  "Hash": "sVPnS7rELq7mgdlpPJ0j2600Xg9mP+4SPBp3hrvXVvE=",
   "Source": "CarRentingProject_Melvin",
   "BasePath": "_content/CarRentingProject_Melvin",
   "Mode": "Default",
@@ -1953,6 +1953,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\angeli melvin\\Documents\\GitHub\\CarRentOpdracht\\CarRentingProject_Melvin\\CarRentingProject_Melvin\\wwwroot\\lib\\jquery-ajax-unobtrusive\\jquery.unobtrusive-ajax.js",
+      "SourceId": "CarRentingProject_Melvin",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\angeli melvin\\Documents\\GitHub\\CarRentOpdracht\\CarRentingProject_Melvin\\CarRentingProject_Melvin\\wwwroot\\",
+      "BasePath": "_content/CarRentingProject_Melvin",
+      "RelativePath": "lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\jquery-ajax-unobtrusive\\jquery.unobtrusive-ajax.js"
+    },
+    {
+      "Identity": "C:\\Users\\angeli melvin\\Documents\\GitHub\\CarRentOpdracht\\CarRentingProject_Melvin\\CarRentingProject_Melvin\\wwwroot\\lib\\jquery-ajax-unobtrusive\\jquery.unobtrusive-ajax.min.js",
+      "SourceId": "CarRentingProject_Melvin",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\angeli melvin\\Documents\\GitHub\\CarRentOpdracht\\CarRentingProject_Melvin\\CarRentingProject_Melvin\\wwwroot\\",
+      "BasePath": "_content/CarRentingProject_Melvin",
+      "RelativePath": "lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\jquery-ajax-unobtrusive\\jquery.unobtrusive-ajax.min.js"
     },
     {
       "Identity": "C:\\Users\\angeli melvin\\Documents\\GitHub\\CarRentOpdracht\\CarRentingProject_Melvin\\CarRentingProject_Melvin\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",

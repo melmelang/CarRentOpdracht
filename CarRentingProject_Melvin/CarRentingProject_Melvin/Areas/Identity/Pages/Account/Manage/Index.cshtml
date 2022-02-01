@@ -2,7 +2,7 @@
 @using Microsoft.AspNetCore.Mvc.Localization
 @inject IViewLocalizer Loc
 @using CarRentingProject_Melvin.Models
-@model IndexModel
+@model             CarRentingProject_Melvin.Areas.Identity.Pages.Account.Manage.IndexModel
 @{
     ViewData["Title"] = @Loc["Profile"];
     ViewData["ActivePage"] = ManageNavPages.Index;
@@ -41,6 +41,11 @@
                     }
                 </select>
                 <label asp-for="Input.LangId" class="form-label">@Loc["Language choice"]</label>
+            </div>
+            <div>
+                <input type="checkbox" asp-for="Input.AcceptCookie" />
+                <label asp-for="Input.AcceptCookie">@Loc["Accept Cookies"]</label>
+                <span asp-validation-for="Input.AcceptCookie" class="text-danger"></span>
             </div>
             <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">@Loc["Save"]</button>
         </form>

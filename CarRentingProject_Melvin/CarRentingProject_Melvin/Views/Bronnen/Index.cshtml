@@ -1,0 +1,7 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Loc
+@{
+    ViewData["Title"] = @Loc["Test"];
+}
+
+<p>@Loc["from the Hello World partial"]</p>
