@@ -22,6 +22,15 @@ builder.Services.AddLocalization(option => option.ResourcesPath = "Resources");
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession(options =>
+{
+    options.Cookie.Name = "Logo_manager.Session";
+    options.IdleTimeout = TimeSpan.FromSeconds(10);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.Configure<IdentityOptions>(options =>
@@ -93,6 +102,7 @@ var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture("nl
 
 app.UseRequestLocalization(localizationOptions);
 
+app.UseSession();
 app.MapRazorPages();
 app.UseMiddleware<SessionUser>();
 

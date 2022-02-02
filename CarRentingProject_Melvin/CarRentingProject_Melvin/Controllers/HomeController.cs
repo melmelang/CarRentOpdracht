@@ -16,15 +16,20 @@ namespace CarRentingProject_Melvin.Controllers
 
         public IActionResult Index()
         {
-            if (_user.AcceptCookie)
+            var isTrue = _context.Users.Where(u => u.Id == _user.Id)
+                                        .Select(u => u.AcceptCookie);
+            foreach (bool item in isTrue)
             {
-                Cookie c = new Cookie();
-                c.Name = "test";
-                c.Value = "test the test";
-                c.Expires = DateTime.MaxValue;
-                c.Expired = false;
-                c.Secure = true;
+                if (item)
+                {
+                    Cookie c = new Cookie("Bronnen", "Om de bronnen te zien moet je op Bronnen/References gaan en op de link klikken");
+                    ViewData["Bronnen"] = c.Value;
+                } else
+                {
+                    ViewData["Bronnen"] = "Cookies zijn momenteel uitgeschakeld. Om ze aan te zetten ga naar uw profiel en aanvaard ze.";
+                }
             }
+            
             return View();
         }
 

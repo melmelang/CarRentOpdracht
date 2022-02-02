@@ -117,22 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Cars" xml:space="preserve">
-    <value>Voiture</value>
-  </data>
-  <data name="Cars rent" xml:space="preserve">
-    <value>Voitures louer</value>
-  </data>
-  <data name="Renters" xml:space="preserve">
-    <value>Loueurs</value>
-  </data>
-  <data name="Sources" xml:space="preserve">
-    <value>Sources</value>
-  </data>
-  <data name="Tenants" xml:space="preserve">
-    <value>Locataires</value>
-  </data>
-  <data name="User Management" xml:space="preserve">
-    <value>Gestion des utilisateurs</value>
+  <data name="Click here to see de sources" xml:space="preserve">
+    <value>Cliquer ici pour voir les sources</value>
   </data>
 </root>

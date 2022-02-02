@@ -1,7 +1,9 @@
 ﻿@page
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Loc
 
 <div>
-    <a href="" data-ajax="true" data-ajax-url="/bronnen" data-ajax-update="#bronnenPanel">Click here to see de bronnen</a>
+    <a href="" data-ajax="true" data-ajax-url="/bronnen" data-ajax-update="#bronnenPanel">@Loc["Click here to see de sources"]</a>
     <br />
     <div id="bronnenPanel"></div>
 </div>

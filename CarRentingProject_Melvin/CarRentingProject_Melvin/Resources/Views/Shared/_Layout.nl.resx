@@ -126,6 +126,9 @@
   <data name="Renters" xml:space="preserve">
     <value>Verhuurbedrijven</value>
   </data>
+  <data name="Sources" xml:space="preserve">
+    <value>Bronnen</value>
+  </data>
   <data name="Tenants" xml:space="preserve">
     <value>Huurders</value>
   </data>
