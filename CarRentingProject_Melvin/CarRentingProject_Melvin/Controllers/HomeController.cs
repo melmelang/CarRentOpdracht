@@ -2,27 +2,31 @@
 using CarRentingProject_Melvin.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Net;
 
 namespace CarRentingProject_Melvin.Controllers
 {
-    public class BronnenController : AppController
+    public class HomeController : AppController
     {
 
-        public BronnenController(DBContext context, IHttpContextAccessor httpContextAccessor,
+        public HomeController(DBContext context, IHttpContextAccessor httpContextAccessor,
                                     ILogger<AppController> logger) : base(context, httpContextAccessor, logger)
         {
         }
 
         public IActionResult Index()
         {
+            if (_user.AcceptCookie)
+            {
+                Cookie c = new Cookie();
+                c.Name = "test";
+                c.Value = "test the test";
+                c.Expires = DateTime.MaxValue;
+                c.Expired = false;
+                c.Secure = true;
+            }
             return View();
         }
-
-        public IActionResult Bronnen()
-        {
-            return View();
-        }
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
