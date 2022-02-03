@@ -26,12 +26,13 @@ namespace CarRentingProject_Melvin.Controllers
                 {
                     Cookie c = new Cookie("Bronnen", "Om de bronnen te zien moet je op Bronnen/References gaan en op de link klikken");
                     ViewData["Bronnen"] = c.Value;
-                } else
+                }
+                else
                 {
                     ViewData["Bronnen"] = "Cookies zijn momenteel uitgeschakeld. Om ze aan te zetten ga naar uw profiel en aanvaard ze.";
                 }
             }
-            
+
             return View();
         }
 
