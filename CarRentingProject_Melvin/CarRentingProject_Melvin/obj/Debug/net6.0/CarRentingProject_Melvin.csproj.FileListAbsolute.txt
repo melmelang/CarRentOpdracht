@@ -813,7 +813,6 @@ C:\Users\angeli melvin\Documents\GitHub\CarRentOpdracht\CarRentingProject_Melvin
 C:\Users\angeli melvin\Documents\GitHub\CarRentOpdracht\CarRentingProject_Melvin\CarRentingProject_Melvin\bin\Debug\net6.0\BouncyCastle.Crypto.dll
 C:\Users\angeli melvin\Documents\GitHub\CarRentOpdracht\CarRentingProject_Melvin\CarRentingProject_Melvin\bin\Debug\net6.0\fr\CarRentingProject_Melvin.resources.dll
 C:\Users\angeli melvin\Documents\GitHub\CarRentOpdracht\CarRentingProject_Melvin\CarRentingProject_Melvin\bin\Debug\net6.0\nl\CarRentingProject_Melvin.resources.dll
-C:\Users\angeli melvin\Documents\GitHub\CarRentOpdracht\CarRentingProject_Melvin\CarRentingProject_Melvin\obj\Debug\net6.0\CarRentingProject_Melvin.csproj.AssemblyReference.cache
 C:\Users\angeli melvin\Documents\GitHub\CarRentOpdracht\CarRentingProject_Melvin\CarRentingProject_Melvin\obj\Debug\net6.0\CarRentingProject_Melvin.Resources.Views.Shared._Layout.fr.resources
 C:\Users\angeli melvin\Documents\GitHub\CarRentOpdracht\CarRentingProject_Melvin\CarRentingProject_Melvin\obj\Debug\net6.0\CarRentingProject_Melvin.Resources.Views.Shared._Layout.nl.resources
 C:\Users\angeli melvin\Documents\GitHub\CarRentOpdracht\CarRentingProject_Melvin\CarRentingProject_Melvin\obj\Debug\net6.0\CarRentingProject_Melvin.csproj.GenerateResource.cache
@@ -898,3 +897,4 @@ C:\Users\angeli melvin\Documents\GitHub\CarRentOpdracht\CarRentingProject_Melvin
 C:\Users\angeli melvin\Documents\GitHub\CarRentOpdracht\CarRentingProject_Melvin\CarRentingProject_Melvin\obj\Debug\net6.0\CarRentingProject_Melvin.Resources.Views.Bronnen.Index.nl.resources
 C:\Users\angeli melvin\Documents\GitHub\CarRentOpdracht\CarRentingProject_Melvin\CarRentingProject_Melvin\obj\Debug\net6.0\CarRentingProject_Melvin.Resources.Views.Bronnen.Bronnen.fr.resources
 C:\Users\angeli melvin\Documents\GitHub\CarRentOpdracht\CarRentingProject_Melvin\CarRentingProject_Melvin\obj\Debug\net6.0\CarRentingProject_Melvin.Resources.Views.Bronnen.Bronnen.nl.resources
+C:\Users\angeli melvin\Documents\GitHub\CarRentOpdracht\CarRentingProject_Melvin\CarRentingProject_Melvin\obj\Debug\net6.0\CarRentingProject_Melvin.csproj.AssemblyReference.cache
