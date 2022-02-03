@@ -18,23 +18,23 @@ namespace CarRentingProject_Melvin.Controllers
 
         public IActionResult ChangeLanguage(string id, string returnUrl)
         {
-            string culture = Thread.CurrentThread.CurrentCulture.ToString();
-            culture = id + culture.Substring(2);  // bv. als de cookie "en-US" bevat, en Nederlands wordt gekozen: --> "nl-US"
+            string c = Thread.CurrentThread.CurrentCulture.ToString();
+            c = id + c.Substring(2);
 
-            if (culture.Length != 5) culture = id;
+            if (c.Length != 5) c = id;
 
             Response.Cookies.Append(
                 CookieRequestCultureProvider.DefaultCookieName,
-                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(c)),
                 new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) });
 
             if (_user.Id != "-")
             {
                 _user.AppLangId = id;
-                Language language = _context.Languages.FirstOrDefault(l => l.AppLangId == id);
-                _user.Language = language;
+                Language lang = _context.Languages.FirstOrDefault(l => l.AppLangId == id);
+                _user.Language = lang;
                 CarRentingProject_AppUser user = _context.Users.FirstOrDefault(u => u.Id == _user.Id);
-                user.Language = language;
+                user.Language = lang;
                 _context.SaveChanges();
             }
 
@@ -109,9 +109,9 @@ namespace CarRentingProject_Melvin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,Name,Cultures,IsSystemLanguage")] Language language)
+        public async Task<IActionResult> Edit(string id, [Bind("Id,Name,Cultures,IsSystemLanguage")] Language lang)
         {
-            if (id != language.AppLangId)
+            if (id != lang.AppLangId)
             {
                 return NotFound();
             }
@@ -120,12 +120,12 @@ namespace CarRentingProject_Melvin.Controllers
             {
                 try
                 {
-                    _context.Update(language);
+                    _context.Update(lang);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!LanguageExists(language.AppLangId))
+                    if (!LanguageExists(lang.AppLangId))
                     {
                         return NotFound();
                     }
@@ -136,7 +136,7 @@ namespace CarRentingProject_Melvin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(language);
+            return View(lang);
         }
 
         // GET: Languages/Delete/5
@@ -147,14 +147,14 @@ namespace CarRentingProject_Melvin.Controllers
                 return NotFound();
             }
 
-            var language = await _context.Languages
+            var lang = await _context.Languages
                 .FirstOrDefaultAsync(m => m.AppLangId == id);
-            if (language == null)
+            if (lang == null)
             {
                 return NotFound();
             }
 
-            return View(language);
+            return View(lang);
         }
 
         // POST: Languages/Delete/5
@@ -162,8 +162,8 @@ namespace CarRentingProject_Melvin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var language = await _context.Languages.FindAsync(id);
-            _context.Languages.Remove(language);
+            var lang = await _context.Languages.FindAsync(id);
+            _context.Languages.Remove(lang);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

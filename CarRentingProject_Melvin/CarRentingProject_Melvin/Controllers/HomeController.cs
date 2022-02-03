@@ -16,6 +16,8 @@ namespace CarRentingProject_Melvin.Controllers
 
         public IActionResult Index()
         {
+            HttpContext.Session.SetString("title", "Hey " + _user.UserName + ", dit zijn de gebruikte Bronnen");
+
             var isTrue = _context.Users.Where(u => u.Id == _user.Id)
                                         .Select(u => u.AcceptCookie);
             foreach (bool item in isTrue)

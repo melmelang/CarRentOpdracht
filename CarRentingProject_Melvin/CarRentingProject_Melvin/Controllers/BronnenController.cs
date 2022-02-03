@@ -18,6 +18,8 @@ namespace CarRentingProject_Melvin.Controllers
 
         public IActionResult Bronnen()
         {
+            //HttpContext.Session.SetString("title", "Hey " + _user.UserName + ", dit zijn de gebruikte Bronnen");
+            ViewData["title"] = HttpContext.Session.GetString("title");
             return View();
         }
 

@@ -12,17 +12,17 @@ namespace CarRentingProject_Melvin.Data
             using (var context = new DBContext(
                 serviceProvider.GetRequiredService<DbContextOptions<DBContext>>()))
             {
-                CarRentingProject_AppUser user = null;
-                CarRentingProject_AppUser user2 = null;
+                CarRentingProject_AppUser admin = null;
+                CarRentingProject_AppUser renter = null;
                 context.Database.EnsureCreated();
 
                 if (!context.Languages.Any())
                 {
                     context.Languages.AddRange(
                         new Language() { AppLangId = "-", AppLangName = "-", AppCultures = "-", AppIsSystemLang = false },
-                        new Language() { AppLangId = "en", AppLangName = "English", AppCultures = "UK;US", AppIsSystemLang = true },
                         new Language() { AppLangId = "fr", AppLangName = "Français", AppCultures = "BE;FR", AppIsSystemLang = true },
-                        new Language() { AppLangId = "nl", AppLangName = "Nederlands", AppCultures = "BE;NL", AppIsSystemLang = true }
+                        new Language() { AppLangId = "nl", AppLangName = "Nederlands", AppCultures = "BE;NL", AppIsSystemLang = true },
+                        new Language() { AppLangId = "en", AppLangName = "English", AppCultures = "UK;US", AppIsSystemLang = true }
                         );
                 }
 
@@ -69,7 +69,7 @@ namespace CarRentingProject_Melvin.Data
                     };
                     context.Users.Add(dummy);
                     context.SaveChanges();
-                    user = new CarRentingProject_AppUser
+                    admin = new CarRentingProject_AppUser
                     {
                         FirstName = "Melvin",
                         LastName = "Angeli",
@@ -81,7 +81,7 @@ namespace CarRentingProject_Melvin.Data
                         EmailConfirmed = true,
                         AppLangId = "fr"
                     };
-                    user2 = new CarRentingProject_AppUser
+                    renter = new CarRentingProject_AppUser
                     {
                         FirstName = "Antoine",
                         LastName = "Couck",
@@ -93,8 +93,8 @@ namespace CarRentingProject_Melvin.Data
                         EmailConfirmed = true,
                         AppLangId = "nl"
                     };
-                    userManager.CreateAsync(user, "Student+1");
-                    userManager.CreateAsync(user2, "Student+1");
+                    userManager.CreateAsync(admin, "Student+1");
+                    userManager.CreateAsync(renter, "Student+1");
                 }
 
                 if (!context.Roles.Any())
@@ -112,12 +112,12 @@ namespace CarRentingProject_Melvin.Data
                     context.Renter.AddRange(
                         new Renter
                         {
-                            FirstName = user2.FirstName,
-                            LastName = user2.LastName,
-                            UserName = user2.UserName,
-                            Birthday = user2.Birthday,
-                            GenderId = user2.GenderId,
-                            UserId = user2.Id
+                            FirstName = renter.FirstName,
+                            LastName = renter.LastName,
+                            UserName = renter.UserName,
+                            Birthday = renter.Birthday,
+                            GenderId = renter.GenderId,
+                            UserId = renter.Id
                         }
                         );
                     context.SaveChanges();
@@ -140,8 +140,8 @@ namespace CarRentingProject_Melvin.Data
                 if (!context.UserRoles.Any())
                 {
                     context.UserRoles.AddRange(
-                        new IdentityUserRole<string> { RoleId = "Admin", UserId = user.Id },
-                        new IdentityUserRole<string> { RoleId = "Renter", UserId = user2.Id }
+                        new IdentityUserRole<string> { RoleId = "Admin", UserId = admin.Id },
+                        new IdentityUserRole<string> { RoleId = "Renter", UserId = renter.Id }
                         );
                     context.SaveChanges();
                 }
